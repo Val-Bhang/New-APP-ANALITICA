@@ -1,0 +1,8 @@
+{
+  "name": "Remix EspectroIR - Base de Datos de Espectros por Grupo Funcional",
+  "description": "Sistema de gestión, análisis y clasificación de espectros infrarrojos (FTIR/IR) por grupos funcionales, con visor interactivo de transmitancia/absorbancia y detección de picos.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

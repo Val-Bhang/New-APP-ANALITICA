@@ -1,0 +1,126 @@
+{
+  "entities": {
+    "SpectrumRecord": {
+      "title": "SpectrumRecord",
+      "description": "An infrared (FTIR/IR) spectrum record categorized by chemical functional group with spectral data points and peak annotations.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier of the spectrum record.",
+          "maxLength": 128
+        },
+        "userId": {
+          "type": "string",
+          "description": "Firebase Auth UID of the record owner.",
+          "maxLength": 128
+        },
+        "userEmail": {
+          "type": "string",
+          "description": "Email address of the spectrum author.",
+          "maxLength": 128
+        },
+        "compoundName": {
+          "type": "string",
+          "description": "Name of the chemical compound (e.g., Acetone, Benzoic Acid).",
+          "maxLength": 200,
+          "minLength": 1
+        },
+        "primaryFunctionalGroup": {
+          "type": "string",
+          "description": "Primary chemical functional group (e.g., Alcohol, Cetonas, Ácidos Carboxílicos).",
+          "maxLength": 100,
+          "minLength": 2
+        },
+        "secondaryFunctionalGroups": {
+          "type": "string",
+          "description": "Optional secondary functional groups comma-separated or JSON.",
+          "maxLength": 300
+        },
+        "chemicalFormula": {
+          "type": "string",
+          "description": "Chemical formula (e.g., C3H6O, C7H6O2).",
+          "maxLength": 60
+        },
+        "casNumber": {
+          "type": "string",
+          "description": "CAS Registry Number (e.g., 67-64-1).",
+          "maxLength": 50
+        },
+        "sampleState": {
+          "type": "string",
+          "description": "Sample physical state or preparation (e.g., Líquido puro, Pastilla KBr, ATR).",
+          "maxLength": 100
+        },
+        "instrument": {
+          "type": "string",
+          "description": "Spectrometer model or laboratory equipment used.",
+          "maxLength": 150
+        },
+        "resolution": {
+          "type": "string",
+          "description": "Spectral resolution (e.g., 4 cm-1).",
+          "maxLength": 50
+        },
+        "notes": {
+          "type": "string",
+          "description": "Observations, purity, experimental notes, or literature references.",
+          "maxLength": 3000
+        },
+        "fileName": {
+          "type": "string",
+          "description": "Original uploaded file name (e.g., spectrum.jdx, sample.csv).",
+          "maxLength": 255
+        },
+        "fileType": {
+          "type": "string",
+          "description": "Format of the source spectrum file (jdx, csv, txt, manual).",
+          "maxLength": 30
+        },
+        "yUnit": {
+          "type": "string",
+          "description": "Vertical axis unit (transmittance or absorbance).",
+          "maxLength": 20
+        },
+        "dataPointsJson": {
+          "type": "string",
+          "description": "JSON string containing array of [wavenumber, value] spectrum pairs.",
+          "maxLength": 500000
+        },
+        "peaksJson": {
+          "type": "string",
+          "description": "JSON string containing detected/annotated absorption peaks with functional assignments.",
+          "maxLength": 50000
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "ISO timestamp of creation.",
+          "maxLength": 64
+        },
+        "updatedAt": {
+          "type": "string",
+          "description": "ISO timestamp of last update.",
+          "maxLength": 64
+        }
+      },
+      "required": [
+        "id",
+        "userId",
+        "compoundName",
+        "primaryFunctionalGroup",
+        "yUnit",
+        "dataPointsJson",
+        "createdAt",
+        "updatedAt"
+      ]
+    }
+  },
+  "firestore": {
+    "/spectrums/{spectrumId}": {
+      "schema": {
+        "$ref": "#/entities/SpectrumRecord"
+      },
+      "description": "Stores user IR spectra organized by chemical functional group with associated peak tables and metadata."
+    }
+  }
+}
